@@ -61,10 +61,11 @@ public class main
         }
     }
 
-    static bool DFS(Node[] Nodes, int start, int finish, bool Found)
+    static bool DFS(Node[] Nodes, int start, int finish, bool Found, ArrayList Answer)
     {
         if (Nodes[start].Next.Count == 0)
         {
+            Answer.Add(1);
             if (finish == 0 || finish != 1)
             {
                 return Found;
@@ -76,19 +77,16 @@ public class main
         }
         else
         {
+            Answer.Add(start);
             if (start == finish)
             {
                 Found = true;
-                return DFS(Nodes, start, 0, Found);
+                return DFS(Nodes, Convert.ToInt32(Nodes[start].Next[0]), 0, Found, Answer);
             }
             else
             {
-                int i = 0;
-                while (i < Nodes[start].Next.Count && !Found)
-                {
-                    Found = DFS(Nodes, Convert.ToInt32(Nodes[start].Next[i]), finish, Found);
-                    i++;
-                }
+                Found = DFS(Nodes, Convert.ToInt32(Nodes[start].Next[0]), finish, Found, Answer);
+
                 return Found;
             }
         }
@@ -138,6 +136,7 @@ public class main
         Console.WriteLine("Results:");
         for (int i = 1; i <= Q; i++)
         {
+            ArrayList Answer = new ArrayList();
             Found = false;
             inputs = lines[i].Split(' ');
             dir = Convert.ToInt32(inputs[0]);
@@ -145,9 +144,15 @@ public class main
             x = Convert.ToInt32(inputs[2]);
             if (dir == 0)
             {
-                if (DFS(Nodes, x, y, Found))
+                if (DFS(Nodes, x, y, Found, Answer))
                 {
-                    Console.WriteLine("YA");
+                    Console.Write("YA ");
+                    Console.Write(Answer[0]);
+                    for (int j = 1; j < Answer.Count; j++)
+                    {
+                        Console.Write("->" + Answer[j]);
+                    }
+                    Console.WriteLine();
                 }
                 else
                 {
@@ -156,9 +161,15 @@ public class main
             }
             else if (dir == 1)
             {
-                if (DFS(Nodes, y, x, Found))
+                if (DFS(Nodes, y, x, Found, Answer))
                 {
-                    Console.WriteLine("YA");
+                    Console.Write("YA ");
+                    Console.Write(Answer[(Answer.Count)-1]);
+                    for (int j = (Answer.Count)-2; j >= 0; j--)
+                    {
+                        Console.Write("->" + Answer[j]);
+                    }
+                    Console.WriteLine();
                 }
                 else
                 {
