@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,14 +80,15 @@ namespace DesktopApp1
             }
         }
 
-        void Start()
+        public void Start(String graph, String query)
         {
             int N, Q;
             int from, to, dir, x, y;
             string[] inputs, lines;
+            string outputs="";
             bool Found;
 
-            lines = System.IO.File.ReadAllLines("graph.txt");
+            lines = System.IO.File.ReadAllLines(graph);
             N = Convert.ToInt32(lines[0]);
             Node[] Nodes = new Node[N + 1];
             for (int i = 0; i <= N; i++)
@@ -103,14 +105,17 @@ namespace DesktopApp1
                 Nodes[to].AddElmt(from);
             }
             Console.WriteLine("Graph loaded successfuly\n");
+            outputs+="Graph loaded successfuly\n"; 
 
             MakeGraph(Nodes, 1, 0);
 
-            lines = System.IO.File.ReadAllLines("query.txt");
+            lines = System.IO.File.ReadAllLines(query);
             Q = Convert.ToInt32(lines[0]);
             Console.WriteLine("Queries loaded successfuly\n");
+            outputs += "Queries loaded successfuly\n";
 
             Console.WriteLine("Results:");
+            outputs += "Results:";
             for (int i = 1; i <= Q; i++)
             {
                 ArrayList Answer = new ArrayList();
@@ -124,16 +129,21 @@ namespace DesktopApp1
                     if (DFS(Nodes, x, y, Found, Answer))
                     {
                         Console.Write("YA ");
+                        outputs += "YA ";
                         Console.Write(Answer[0]);
+                        outputs += Answer[0];
                         for (int j = 1; j < Answer.Count; j++)
                         {
                             Console.Write("->" + Answer[j]);
+                            outputs += "->" + Answer[j];
                         }
                         Console.WriteLine();
+                        outputs += "\n";
                     }
                     else
                     {
                         Console.WriteLine("TIDAK");
+                        outputs += "TIDAK\n";
                     }
                 }
                 else if (dir == 1)
@@ -141,20 +151,25 @@ namespace DesktopApp1
                     if (DFS(Nodes, y, x, Found, Answer))
                     {
                         Console.Write("YA ");
+                        outputs += "YA ";
                         Console.Write(Answer[(Answer.Count) - 1]);
+                        outputs += Answer[(Answer.Count) - 1];
                         for (int j = (Answer.Count) - 2; j >= 0; j--)
                         {
                             Console.Write("->" + Answer[j]);
+                            outputs += "->" + Answer[j];
                         }
                         Console.WriteLine();
+                        outputs += "\n";
                     }
                     else
                     {
                         Console.WriteLine("TIDAK");
+                        outputs += "TIDAK\n";
                     }
                 }
             }
-
+            MessageBox.Show(outputs);
             //PrintList(Nodes,N);
         }
     }

@@ -81,6 +81,7 @@
             this.Controls.Add(this.label1);
             this.Name = "InputGraph";
             this.Text = "Building Graph...";
+            this.Load += new System.EventHandler(this.InputGraph_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

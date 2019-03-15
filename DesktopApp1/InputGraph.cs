@@ -28,6 +28,11 @@ namespace DesktopApp1
 
         }
 
+        private void InputGraph_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void inputStr(object sender, EventArgs e)
         {
             if (N > 0)
