@@ -1,4 +1,4 @@
-﻿namespace DesktopApp1
+﻿namespace HideAndSeekGraph
 {
     partial class InputGraph
     {

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
 
-namespace DesktopApp1
+namespace HideAndSeekGraph
 {
     public partial class Start : Form
     {
@@ -104,8 +104,10 @@ namespace DesktopApp1
 
         private void BeginProcedure(object sender, EventArgs e)
         {
-            Procedure P = new Procedure();
-            P.Start(graph,query);
+            //Procedure P = new Procedure();
+            //P.Start(graph,query);
+            MainWindow w = new MainWindow();
+            w.Show();
         }
 
         private void compute(object sender, EventArgs e)
