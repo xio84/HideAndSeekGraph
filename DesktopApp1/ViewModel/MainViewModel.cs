@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using GraphSharp.Controls;
 using HideAndSeekGraph.NodeParts;
+using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace HideAndSeekGraph.ViewModel
 {
@@ -18,27 +20,40 @@ namespace HideAndSeekGraph.ViewModel
         private GGraph graph;
         private List<String> layoutAlgorithmTypes = new List<string>();
         private int count;
+        public static List<GVertex> existingVertices;
+        public static List<GEdge> connections;
         #endregion
 
         #region Ctor
         public MainViewModel()
         {
+            if (existingVertices == null)
+            {
+                existingVertices = new List<GVertex>();
+            }
+            if (connections == null)
+            {
+                connections = new List<GEdge>();
+            }
+
             Graph = new GGraph(true);
 
-
-            List<GVertex> existingVertices = new List<GVertex>();
-            existingVertices.Add(new GVertex("Sacha Barber", true)); //0
-            existingVertices.Add(new GVertex("Sarah Barber", false)); //1
-            existingVertices.Add(new GVertex("Marlon Grech", true)); //2
+            //existingVertices.Add(new GVertex("Sarah Barber", "Red")); //1
+            //existingVertices.Add(new GVertex("Marlon Grech", "Blue")); //2
 
 
             foreach (GVertex vertex in existingVertices)
+            {
                 Graph.AddVertex(vertex);
+                //MessageBox.Show(vertex.ID);
+            }
 
 
             //add some edges to the graph
-            AddNewGraphEdge(existingVertices[0], existingVertices[1]);
-            AddNewGraphEdge(existingVertices[0], existingVertices[2]);
+            foreach (GEdge obj in connections)
+            {
+                Graph.AddEdge(obj);
+            }
 
             //Add Layout Algorithm Types
             layoutAlgorithmTypes.Add("BoundedFR");
@@ -52,27 +67,34 @@ namespace HideAndSeekGraph.ViewModel
             layoutAlgorithmTypes.Add("Tree");
 
             //Pick a default Layout Algorithm Type
-            LayoutAlgorithmType = "LinLog";
-
-
+            LayoutAlgorithmType = "Tree";
 
 
 
         }
         #endregion
 
+        public void AddVertex(String ID, String color)
+        {
+            existingVertices.Add(new GVertex(ID, color)); //0
+        }
+
+        public void AddEdge(int b, int e)
+        {
+            GVertex begin = existingVertices[b-1];
+            GVertex end = existingVertices[e - 1];
+            string edgeString = string.Format("{0}-{1} Connected", begin.ID, end.ID);
+
+            connections.Add(new GEdge(edgeString, begin, end, "Black"));
+        }
 
         public void ReLayoutGraph()
         {
-            graph = new GGraph(true);
+            /*graph = new GGraph(true);
             count++;
 
 
 
-            List<GVertex> existingVertices = new List<GVertex>();
-            existingVertices.Add(new GVertex(String.Format("Barn Rubble{0}", count), true)); //0
-            existingVertices.Add(new GVertex(String.Format("Frank Zappa{0}", count), false)); //1
-            existingVertices.Add(new GVertex(String.Format("Gerty CrinckleBottom{0}", count), true)); //2
 
 
             foreach (GVertex vertex in existingVertices)
@@ -80,13 +102,44 @@ namespace HideAndSeekGraph.ViewModel
 
 
             //add some edges to the graph
-            AddNewGraphEdge(existingVertices[0], existingVertices[1]);
-            AddNewGraphEdge(existingVertices[0], existingVertices[2]);
+            //AddNewGraphEdge(existingVertices[0], existingVertices[1]);
+            //AddNewGraphEdge(existingVertices[0], existingVertices[2]);
 
 
-            NotifyPropertyChanged("Graph");
+            NotifyPropertyChanged("Graph");*/
+
+            Graph = new GGraph(true);
+
+            //existingVertices.Add(new GVertex("Sarah Barber", "Red")); //1
+            //existingVertices.Add(new GVertex("Marlon Grech", "Blue")); //2
 
 
+            foreach (GVertex vertex in existingVertices)
+            {
+                Graph.AddVertex(vertex);
+                //MessageBox.Show(vertex.ID);
+            }
+
+
+            //add some edges to the graph
+            foreach (GEdge obj in connections)
+            {
+                Graph.AddEdge(obj);
+            }
+
+            //Add Layout Algorithm Types
+            layoutAlgorithmTypes.Add("BoundedFR");
+            layoutAlgorithmTypes.Add("Circular");
+            layoutAlgorithmTypes.Add("CompoundFDP");
+            layoutAlgorithmTypes.Add("EfficientSugiyama");
+            layoutAlgorithmTypes.Add("FR");
+            layoutAlgorithmTypes.Add("ISOM");
+            layoutAlgorithmTypes.Add("KK");
+            layoutAlgorithmTypes.Add("LinLog");
+            layoutAlgorithmTypes.Add("Tree");
+
+            //Pick a default Layout Algorithm Type
+            LayoutAlgorithmType = "Tree";
 
 
         }
@@ -94,11 +147,11 @@ namespace HideAndSeekGraph.ViewModel
 
 
         #region Private Methods
-        private GEdge AddNewGraphEdge(GVertex from, GVertex to)
+        private GEdge AddNewGraphEdge(GVertex from, GVertex to, String Color)
         {
             string edgeString = string.Format("{0}-{1} Connected", from.ID, to.ID);
 
-            GEdge newEdge = new GEdge(edgeString, from, to);
+            GEdge newEdge = new GEdge(edgeString, from, to, Color);
             Graph.AddEdge(newEdge);
             return newEdge;
         }

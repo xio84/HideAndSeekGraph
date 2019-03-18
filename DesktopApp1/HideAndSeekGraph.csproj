@@ -98,9 +98,6 @@
     <Compile Include="GraphWindow.xaml.cs">
       <DependentUpon>GraphWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphApp.xaml.cs">
-      <DependentUpon>GraphApp.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
@@ -135,9 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="GraphWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GraphApp.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

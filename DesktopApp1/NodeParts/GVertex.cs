@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace HideAndSeekGraph.NodeParts
 {
@@ -10,17 +11,18 @@ namespace HideAndSeekGraph.NodeParts
     public class GVertex
     {
         public string ID { get; private set; }
-        public bool IsMale { get; private set; }
 
-        public GVertex(string id, bool isMale)
+        public GVertex(string id,string color)
         {
             ID = id;
-            IsMale = isMale;
+            VertexColor = color;
         }
+
+        public String VertexColor{get; set;}
 
         public override string ToString()
         {
-            return string.Format("{0}-{1}", ID, IsMale);
+            return string.Format("{0}", ID);
         }
     }
 

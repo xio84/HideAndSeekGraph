@@ -4,11 +4,14 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HideAndSeekGraph.ViewModel;
+using HideAndSeekGraph.NodeParts;
 
 namespace HideAndSeekGraph
 {
     class Procedure
     {
+        public static MainViewModel gg = new MainViewModel();
         void MakeGraph(Node[] Nodes, int Curr, int Prev)
         {
             if (Nodes[Curr].Next.Count == 1 && Prev != 0)
@@ -80,7 +83,7 @@ namespace HideAndSeekGraph
             }
         }
 
-        public void Start(String graph, String query)
+        public MainViewModel Start(String graph, String query)
         {
             int N, Q;
             int from, to, dir, x, y;
@@ -88,9 +91,15 @@ namespace HideAndSeekGraph
             string outputs="";
             bool Found;
 
+
+
             lines = System.IO.File.ReadAllLines(graph);
             N = Convert.ToInt32(lines[0]);
             Node[] Nodes = new Node[N + 1];
+            for (int i = 1; i <= N; i++)
+            {
+                gg.AddVertex(i.ToString(), "Black");
+            }
             for (int i = 0; i <= N; i++)
             {
                 Nodes[i] = new Node();
@@ -103,6 +112,8 @@ namespace HideAndSeekGraph
                 to = Convert.ToInt32(inputs[1]);
                 Nodes[from].AddElmt(to);
                 Nodes[to].AddElmt(from);
+                gg.AddEdge(from, to);
+                //gg.AddEdge(new GVertex(to.ToString(), "Black"), new GVertex(from.ToString(), "Black"));
             }
             Console.WriteLine("Graph loaded successfuly\n");
             outputs+="Graph loaded successfuly\n"; 
@@ -170,6 +181,7 @@ namespace HideAndSeekGraph
                 }
             }
             MessageBox.Show(outputs);
+            return gg;
             //PrintList(Nodes,N);
         }
     }

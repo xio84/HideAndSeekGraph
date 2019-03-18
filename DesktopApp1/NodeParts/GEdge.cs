@@ -1,6 +1,10 @@
 ﻿using System.Diagnostics;
 using QuickGraph;
 using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Media;
+using System;
+
 
 namespace HideAndSeekGraph.NodeParts
 {
@@ -21,10 +25,13 @@ namespace HideAndSeekGraph.NodeParts
             }
         }
 
-        public GEdge(string id, GVertex source, GVertex target)
+        public String EdgeColor { get; set; }
+
+        public GEdge(string id, GVertex source, GVertex target, String EC)
             : base(source, target)
         {
             ID = id;
+            EdgeColor = EC;
         }
 
         public bool ShowTooltip => true;
@@ -41,8 +48,22 @@ namespace HideAndSeekGraph.NodeParts
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
         #endregion
     }
+
+
+    /*public class EdgeColorConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return new SolidColorBrush((Color)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }*/
 
 }

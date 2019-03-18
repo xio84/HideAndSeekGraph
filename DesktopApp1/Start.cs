@@ -23,14 +23,6 @@ namespace HideAndSeekGraph
 
         }
 
-        private void jumalhN_Click(object sender, EventArgs e)
-        {
-            input = textBox1.Text;
-            MessageBox.Show("Jumlah input = "+input);
-            jumlahN.Text = "Jumlah N = " + input;
-            textBox1.Text = null;
-        }
-
         private void helloWorldLabel_Click(object sender, EventArgs e)
         {
 
@@ -104,9 +96,8 @@ namespace HideAndSeekGraph
 
         private void BeginProcedure(object sender, EventArgs e)
         {
-            //Procedure P = new Procedure();
-            //P.Start(graph,query);
-            MainWindow w = new MainWindow();
+            Procedure P = new Procedure();
+            MainWindow w = new MainWindow(P.Start(graph, query));
             w.Show();
         }
 

@@ -19,10 +19,10 @@ namespace HideAndSeekGraph
     public partial class MainWindow : Window
     {
         private MainViewModel vm;
-        public MainWindow()
+        public MainWindow(MainViewModel v)
         {
-            vm = new MainViewModel();
-            this.DataContext = vm;
+            vm = v;
+            this.DataContext = v;
             InitializeComponent();
         }
 
