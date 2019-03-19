@@ -6,7 +6,7 @@
         xmlns:graphBits="clr-namespace:HideAndSeekGraph.NodeParts"
         xmlns:viewModels="clr-namespace:HideAndSeekGraph.ViewModel"
         xmlns:graphsharp="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
-        Title="HideAndSeekGraph" Height="350" Width="525">
+        Title="HideAndSeekGraph" Height="350" Width="680">
     <Window.Resources>
         <DataTemplate x:Key="demoTemplate" DataType="{x:Type graphBits:GVertex}">
             <StackPanel Orientation="Horizontal" Margin="5">
@@ -112,9 +112,9 @@
 						HighlightAlgorithmType="Simple" />
         </zoom:ZoomControl>
 
-        <ListBox Name="QueryList" Margin="0,32.8,10.4,0" Grid.Row="1" HorizontalAlignment="Right" Width="100" Grid.RowSpan="2" Height="156" VerticalAlignment="Top"/>
-        <TextBox TextWrapping="Wrap" Text="Query" Margin="0,105.4,10.4,0" Grid.Row="2" HorizontalAlignment="Right" Width="100" Height="23" VerticalAlignment="Top"/>
-        <Button Content="Input" Margin="0,141.4,10.4,0" Grid.Row="2" HorizontalAlignment="Right" Width="100" Height="19" VerticalAlignment="Top"/>
+        <ListBox Name="QueryList" Margin="0,32.8,10.4,0" Grid.Row="1" HorizontalAlignment="Right" Width="100" Grid.RowSpan="2" Height="156" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <TextBox Name="Query" Text="Query" Margin="0,105.4,10.4,0" Grid.Row="2" HorizontalAlignment="Right" Width="100" Height="23" VerticalAlignment="Top"/>
+        <Button Content="Input" Margin="0,141.4,10.4,0" Grid.Row="2" HorizontalAlignment="Right" Width="100" Height="19" VerticalAlignment="Top" Click="Button_Click_1"/>
 
 
     </Grid>

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,23 +19,41 @@ namespace HideAndSeekGraph
     public partial class MainWindow : Window
     {
         private MainViewModel vm;
-        public MainWindow(MainViewModel v)
+        public ArrayList A;
+        public MainWindow(MainViewModel v, ArrayList _A)
         {
+            A = _A;
             vm = v;
+            vm.ReLayoutGraph();
             this.DataContext = v;
             InitializeComponent();
+            foreach (string a in A)
+            {
+                QueryList.Items.Add(a);
+            }
         }
 
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            QueryList.Items.Clear();
+            foreach (string a in A)
+            {
+                QueryList.Items.Add(a);
+            }
             vm.ReLayoutGraph();
         }
 
         private void Animation(object sender, RoutedEventArgs e)
         {
-            vm.Animation();
+            vm.Animation(QueryList.SelectedValue.ToString());
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            QueryList.Items.Add(Query.Text);
+            Query.Text = null;
         }
     }
 }
