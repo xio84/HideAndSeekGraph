@@ -16,10 +16,12 @@ namespace HideAndSeekGraph
         {
             if (Nodes[Curr].Next.Count == 1 && Prev != 0)
             {
+                //gg.DeleteEdge(Curr, Convert.ToInt32(Nodes[Curr].Next[0]));
                 Nodes[Curr].Next.RemoveAt(0);
             }
             else
             {
+                //gg.DeleteEdge(Curr, Prev);
                 Nodes[Curr].Next.Remove(Prev);
                 for (int i = 0; i < Nodes[Curr].Next.Count; i++)
                 {
@@ -28,149 +30,6 @@ namespace HideAndSeekGraph
             }
         }
 
-        bool DFS(Node[] Nodes, int start, int finish, bool Found, ArrayList Answer)
-        {
-            if (Nodes[start].Next.Count == 0)
-            {
-                Answer.Add(1);
-                if (finish == 0 || finish != 1)
-                {
-                    return Found;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                Answer.Add(start);
-                if (start == finish)
-                {
-                    Found = true;
-                    return DFS(Nodes, Convert.ToInt32(Nodes[start].Next[0]), 0, Found, Answer);
-                }
-                else
-                {
-                    Found = DFS(Nodes, Convert.ToInt32(Nodes[start].Next[0]), finish, Found, Answer);
-
-                    return Found;
-                }
-            }
-        }
-
-        void PrintList(Node[] Nodes, int N)
-        {
-            Console.WriteLine("\nIsi ArrayList : ");
-            for (int i = 1; i <= N; i++)
-            {
-                Console.WriteLine(i);
-                Nodes[i].Print();
-            }
-        }
-
-        public MainViewModel Start(String graph, String query)
-        {
-            int N, Q;
-            int from, to, dir, x, y;
-            string[] inputs, lines;
-            string outputs="";
-            bool Found;
-
-
-
-            lines = System.IO.File.ReadAllLines(graph);
-            N = Convert.ToInt32(lines[0]);
-            Node[] Nodes = new Node[N + 1];
-            for (int i = 1; i <= N; i++)
-            {
-                gg.AddVertex(i.ToString(), "Black");
-            }
-            for (int i = 0; i <= N; i++)
-            {
-                Nodes[i] = new Node();
-            }
-
-            for (int i = 1; i < N; i++)
-            {
-                inputs = lines[i].Split(' ');
-                from = Convert.ToInt32(inputs[0]);
-                to = Convert.ToInt32(inputs[1]);
-                Nodes[from].AddElmt(to);
-                Nodes[to].AddElmt(from);
-                gg.AddEdge(from, to);
-                //gg.AddEdge(to, from);
-            }
-            Console.WriteLine("Graph loaded successfuly\n");
-            outputs+="Graph loaded successfuly\n"; 
-
-            MakeGraph(Nodes, 1, 0);
-
-            lines = System.IO.File.ReadAllLines(query);
-            Q = Convert.ToInt32(lines[0]);
-            Console.WriteLine("Queries loaded successfuly\n");
-            outputs += "Queries loaded successfuly\n";
-
-            Console.WriteLine("Results:");
-            outputs += "Results:";
-            for (int i = 1; i <= Q; i++)
-            {
-                ArrayList Answer = new ArrayList();
-                Found = false;
-                inputs = lines[i].Split(' ');
-                dir = Convert.ToInt32(inputs[0]);
-                y = Convert.ToInt32(inputs[1]);
-                x = Convert.ToInt32(inputs[2]);
-                if (dir == 0)
-                {
-                    if (DFS(Nodes, x, y, Found, Answer))
-                    {
-                        Console.Write("YA ");
-                        outputs += "YA ";
-                        Console.Write(Answer[0]);
-                        outputs += Answer[0];
-                        for (int j = 1; j < Answer.Count; j++)
-                        {
-                            Console.Write("->" + Answer[j]);
-                            outputs += "->" + Answer[j];
-                        }
-                        Console.WriteLine();
-                        outputs += "\n";
-                    }
-                    else
-                    {
-                        Console.WriteLine("TIDAK");
-                        outputs += "TIDAK\n";
-                    }
-                }
-                else if (dir == 1)
-                {
-                    if (DFS(Nodes, y, x, Found, Answer))
-                    {
-                        Console.Write("YA ");
-                        outputs += "YA ";
-                        Console.Write(Answer[(Answer.Count) - 1]);
-                        outputs += Answer[(Answer.Count) - 1];
-                        for (int j = (Answer.Count) - 2; j >= 0; j--)
-                        {
-                            Console.Write("->" + Answer[j]);
-                            outputs += "->" + Answer[j];
-                        }
-                        Console.WriteLine();
-                        outputs += "\n";
-                    }
-                    else
-                    {
-                        Console.WriteLine("TIDAK");
-                        outputs += "TIDAK\n";
-                    }
-                }
-            }
-            MessageBox.Show(outputs);
-            return gg;
-            //PrintList(Nodes,N);
-        }
-    }/*
         static bool DFS0(Node[] Nodes, int start, int finish, int goal, bool Found, ArrayList Answer)
         {
             if (start == finish) // basis 1 : Node sekarang adalah node finish
@@ -201,6 +60,10 @@ namespace HideAndSeekGraph
                 while (i < N && !FoundTemp)
                 {
                     FoundTemp = DFS0(Nodes, Convert.ToInt32(Nodes[start].Next[i]), finish, goal, Found, Answer); // rekursi
+                    if (FoundTemp)
+                    {
+                        Answer.Add(Convert.ToInt32(Nodes[start].Next[i]));
+                    }
                     i++;
                 }
 
@@ -234,6 +97,10 @@ namespace HideAndSeekGraph
                 while (i < N && !FoundTemp)
                 {
                     FoundTemp = DFS1(Nodes, Convert.ToInt32(Nodes[start].Next[i]), finish, goal, Found, Answer); // rekursi
+                    if (FoundTemp)
+                    {
+                        Answer.Add(Convert.ToInt32(Nodes[start].Next[i]));
+                    }
                     i++;
                 }
 
@@ -241,7 +108,7 @@ namespace HideAndSeekGraph
             }
         }
 
-        static void PrintList(Node[] Nodes, int N)
+        /*bool DFS(Node[] Nodes, int start, int finish, bool Found, ArrayList Answer)
         {
             Console.WriteLine("\nIsi ArrayList : ");
             for (int i = 1; i <= N; i++)
@@ -251,7 +118,121 @@ namespace HideAndSeekGraph
             }
         }
 
-        static void Main()
+
+        public MainViewModel Start(String graph, String query, out ArrayList Query)
+        {
+            int N, Q;
+            int from, to, dir, x, y;
+            string[] inputs, lines;
+            string outputs="";
+            bool Found;
+
+
+
+            lines = System.IO.File.ReadAllLines(graph);
+            N = Convert.ToInt32(lines[0]);
+            Node[] Nodes = new Node[N + 1];
+            for (int i = 1; i <= N; i++)
+            {
+                gg.AddVertex(i.ToString(), "Black");
+            }
+            for (int i = 0; i <= N; i++)
+            {
+                Nodes[i] = new Node();
+            }
+
+            for (int i = 1; i < N; i++)
+            {
+                inputs = lines[i].Split(' ');
+                from = Convert.ToInt32(inputs[0]);
+                to = Convert.ToInt32(inputs[1]);
+                Nodes[from].AddElmt(to);
+                Nodes[to].AddElmt(from);
+                gg.AddEdge(from, to);
+                //gg.AddEdge(to, from);
+            }
+
+            Console.WriteLine("Graph loaded successfuly\n");
+            outputs+="Graph loaded successfuly\n"; 
+
+            MakeGraph(Nodes, 1, 0);
+
+            PrintList(Nodes, N);
+
+            ArrayList Query = new ArrayList();
+
+            lines = System.IO.File.ReadAllLines(query);
+            Q = Convert.ToInt32(lines[0]);
+            Console.WriteLine("Queries loaded successfuly\n");
+            outputs += "Queries loaded successfuly\n";
+
+            for (int i = 1; i <= Q; i++)
+            {
+                Query.Add(lines[i]);
+            }
+
+            Console.WriteLine("Results:");
+            outputs += "Results:";
+            for (int i = 0; i < Q; i++)
+            {
+                ArrayList Answer = new ArrayList();
+                Found = false;
+                inputs = Convert.ToString(Query[i]).Split(' ');
+                dir = Convert.ToInt32(inputs[0]);
+                y = Convert.ToInt32(inputs[1]);
+                x = Convert.ToInt32(inputs[2]);
+                if (dir == 0)
+                {
+                    if (DFS0(Nodes, 1, y, x, Found, Answer))
+                    {
+                        Answer.Add(1);
+                        Console.Write("YA ");
+                        outputs += "YA ";
+                        Console.Write(Answer[0]);
+                        outputs += Answer[0];
+                        for (int j = 1; j < Answer.Count; j++)
+                        {
+                            Console.Write("->" + Answer[j]);
+                            outputs += "->" + Answer[j];
+                        }
+                        Console.WriteLine();
+                        outputs += "\n";
+                    }
+                    else
+                    {
+                        Console.WriteLine("TIDAK");
+                        outputs += "TIDAK\n";
+                    }
+                }
+                else if (dir == 1)
+                {
+                    if (DFS1(Nodes, y, 0, x, Found, Answer))
+                    {
+                        Answer.Add(y);
+                        Console.Write("YA ");
+                        outputs += "YA ";
+                        Console.Write(Answer[(Answer.Count) - 1]);
+                        outputs += Answer[(Answer.Count) - 1];
+                        for (int j = (Answer.Count) - 2; j >= 0; j--)
+                        {
+                            Console.Write("->" + Answer[j]);
+                            outputs += "->" + Answer[j];
+                        }
+                        Console.WriteLine();
+                        outputs += "\n";
+                    }
+                    else
+                    {
+                        Console.WriteLine("TIDAK");
+                        outputs += "TIDAK\n";
+                    }
+                }
+            }
+            MessageBox.Show(outputs);
+            return gg;
+        }
+    }*/
+        static bool DFS0(Node[] Nodes, int start, int finish, int goal, bool Found, ArrayList Answer)
         {
             int N, Q;
             int from, to, dir, x, y;
@@ -296,13 +277,13 @@ namespace HideAndSeekGraph
                     if (DFS0(Nodes, 1, y, x, Found, Answer))
                     {
                         Console.Write("YA ");
-                        /*
+                        
                         Console.Write(Answer[0]);
                         for (int j = 1; j < Answer.Count; j++)
                         {
                             Console.Write("->" + Answer[j]);
                         }
-                        *//*
+                        */
                         Console.WriteLine();
                     }
                     else
@@ -315,7 +296,7 @@ namespace HideAndSeekGraph
                     if (DFS1(Nodes, y, 0, x, Found, Answer))
                     {
                         Console.Write("YA ");
-                        /*
+                        
                         Console.Write(Answer[(Answer.Count)-1]);
                         for (int j = (Answer.Count)-2; j >= 0; j--)
                         {
@@ -333,5 +314,7 @@ namespace HideAndSeekGraph
 
             // PrintList(Nodes,N);
         }
-    }*/
+    }
 }
+
+        static void PrintList(Node[] Nodes, int N)

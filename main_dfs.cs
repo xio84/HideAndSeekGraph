@@ -77,6 +77,10 @@ public class main
             while (i < N && !FoundTemp)
             {
                 FoundTemp = DFS0(Nodes, Convert.ToInt32(Nodes[start].Next[i]), finish, goal, Found, Answer); // rekursi
+                if (FoundTemp)
+                {
+                    Answer.Add(Convert.ToInt32(Nodes[start].Next[i]));
+                }
                 i++;
             }
 
@@ -110,6 +114,10 @@ public class main
             while (i < N && !FoundTemp)
             {
                 FoundTemp = DFS1(Nodes, Convert.ToInt32(Nodes[start].Next[i]), finish, goal, Found, Answer); // rekursi
+                if (FoundTemp)
+                {
+                    Answer.Add(Convert.ToInt32(Nodes[start].Next[i]));
+                }
                 i++;
             }
 
@@ -171,14 +179,13 @@ public class main
             {
                 if (DFS0(Nodes, 1, y, x, Found,Answer))
                 {
+                    Answer.Add(1);
                     Console.Write("YA ");
-                    /*
                     Console.Write(Answer[0]);
                     for (int j = 1; j < Answer.Count; j++)
                     {
                         Console.Write("->" + Answer[j]);
-                    }
-                    */
+                    }     
                     Console.WriteLine();
                 }
                 else
@@ -190,14 +197,13 @@ public class main
             {
                 if (DFS1(Nodes, y, 0, x, Found, Answer))
                 {
+                    Answer.Add(y);
                     Console.Write("YA ");
-                    /*
-                    Console.Write(Answer[(Answer.Count)-1]);
-                    for (int j = (Answer.Count)-2; j >= 0; j--)
+                    Console.Write(Answer[(Answer.Count) - 1]);
+                    for (int j = (Answer.Count) - 2; j >= 0; j--)
                     {
                         Console.Write("->" + Answer[j]);
                     }
-                    */
                     Console.WriteLine();
                 }
                 else
