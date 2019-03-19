@@ -171,11 +171,22 @@ namespace HideAndSeekGraph.ViewModel
                 {
                     if (DFS0(1, y, x, Found))
                     {
-                        MessageBox.Show("Ditemukan", "Hasil Pencarian:");
+                        MessageBox.Show("YA! Ditemukan", "Hasil Pencarian");
                     }
                     else
                     {
-                        MessageBox.Show("Tidak Ditemukan", "Hasil Pencarian:");
+                        MessageBox.Show("TIDAK! Tidak Ditemukan", "Hasil Pencarian");
+                    }
+                }
+                else if(dir == 1)
+                {
+                    if (DFS1(y, 0, x, Found))
+                    {
+                        MessageBox.Show("YA! Ditemukan", "Hasil Pencarian");
+                    }
+                    else
+                    {
+                        MessageBox.Show("TIDAK! Tidak Ditemukan", "Hasil Pencarian");
                     }
                 }
             };
@@ -252,7 +263,83 @@ namespace HideAndSeekGraph.ViewModel
                 return FoundTemp;
             }
         }
-        
+
+        bool DFS1(int start, int finish, int goal, bool Found)
+        {
+            GVertex S = existingVertices[start - 1];
+            if (start == goal) // cek apakah node sekarang adalah node yang dicari
+            {
+                if (graph.OutDegree(S) == 0)
+                {
+                    S.VertexColor = "Yellow";
+                    Thread.Sleep(500);
+                    S.VertexColor = "Black";
+                    Thread.Sleep(500);
+                }
+                S.VertexColor = "Green";
+                Thread.Sleep(500);
+                S.VertexColor = "Black";
+                Thread.Sleep(500);
+                return true;
+            }
+            else if (graph.OutDegree(S) == 0) // basis : Node sekarang adalah node daun (Tidak memiliki child node lagi)
+            {
+                S.VertexColor = "Yellow";
+                Thread.Sleep(500);
+                S.VertexColor = "Black";
+                Thread.Sleep(500);
+                if (start == goal) // cek apakah node sekarang adalah node yang dicari
+                {
+                    S.VertexColor = "Green";
+                    Thread.Sleep(500);
+                    S.VertexColor = "Black";
+                    Thread.Sleep(500);
+                    return true;
+                }
+                else
+                {   
+
+                    if (Found)
+                    {
+                        S.VertexColor = "Green";
+                        Thread.Sleep(500);
+                    }
+                    else
+                    {
+                        S.VertexColor = "Red";
+                        Thread.Sleep(500);
+                    }
+                    S.VertexColor = "Black";
+                    return Found;
+                }
+            }
+            else
+            {
+                if (start == goal)
+                {
+                    S.VertexColor = "Green";
+                    Found = true;
+                }
+
+                S.VertexColor = "Blue";
+                Thread.Sleep(500);
+                int i = 0;
+                int N = graph.OutDegree(S);
+                bool FoundTemp = false;
+                while (i < N && !FoundTemp)
+                {
+                    graph.OutEdge(S, i).EdgeColor = "Blue";
+                    Thread.Sleep(500);
+                    FoundTemp = DFS1(Convert.ToInt32(graph.OutEdge(S, i).Target.ID), finish, goal, Found); // rekursi
+                    Thread.Sleep(500);
+                    graph.OutEdge(S, i).EdgeColor = "Black";
+                    Thread.Sleep(500);
+                    i++;
+                }
+                S.VertexColor = "Black";
+                return FoundTemp;
+            }
+        }
 
         /*#region Private Methods
         private GEdge AddNewGraphEdge(GVertex from, GVertex to, String Color)

@@ -32,7 +32,7 @@ namespace HideAndSeekGraph
             MessageBox.Show("File = " + graph);*/
             var fileContent = string.Empty;
             var filePath = string.Empty;
-
+            var fileName = string.Empty;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "D:\\";
@@ -44,7 +44,7 @@ namespace HideAndSeekGraph
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-
+                    fileName = openFileDialog.SafeFileName;
                     //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
 
@@ -55,16 +55,16 @@ namespace HideAndSeekGraph
                 }
             }
 
-            FlexibleMessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+            FlexibleMessageBox.Show(fileContent, "File Content at path : " + filePath, MessageBoxButtons.OK);
             graph = filePath;
-            graphlabel.Text = "File = " + graph;
+            graphlabel.Text = "File Graph : " + fileName;
         }
 
         private void query_input(object sender, EventArgs e)
         {
             var fileContent = string.Empty;
             var filePath = string.Empty;
-
+            var fileName = string.Empty;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "D:\\";
@@ -76,6 +76,7 @@ namespace HideAndSeekGraph
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
+                    fileName = openFileDialog.SafeFileName;
 
                     //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
@@ -87,9 +88,19 @@ namespace HideAndSeekGraph
                 }
             }
 
-            FlexibleMessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+            FlexibleMessageBox.Show(fileContent, "File Content at path : " + filePath, MessageBoxButtons.OK);
             query = filePath;
-            querylabel.Text = "File = " + query;
+            querylabel.Text = "File Query : " + fileName;
+        }
+
+        private void helloWorldLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void BeginProcedure(object sender, EventArgs e)
