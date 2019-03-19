@@ -50,7 +50,7 @@ namespace HideAndSeekGraph
             // graphfbutton
             // 
             this.graphfbutton.Font = new System.Drawing.Font("Trebuchet MS", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.graphfbutton.Location = new System.Drawing.Point(334, 295);
+            this.graphfbutton.Location = new System.Drawing.Point(99, 286);
             this.graphfbutton.Name = "graphfbutton";
             this.graphfbutton.Size = new System.Drawing.Size(145, 38);
             this.graphfbutton.TabIndex = 8;
@@ -78,7 +78,7 @@ namespace HideAndSeekGraph
             // 
             // queryfbutton
             // 
-            this.queryfbutton.Location = new System.Drawing.Point(99, 295);
+            this.queryfbutton.Location = new System.Drawing.Point(334, 286);
             this.queryfbutton.Name = "queryfbutton";
             this.queryfbutton.Size = new System.Drawing.Size(145, 38);
             this.queryfbutton.TabIndex = 11;

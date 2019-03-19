@@ -88,6 +88,23 @@ namespace HideAndSeekGraph.ViewModel
             connections.Add(new GEdge(edgeString, begin, end, "Black"));
         }
 
+        public void DeleteEdge(int b)
+        {
+            GVertex begin = existingVertices[b - 1];
+            int i = 0;
+            while (i<connections.Count)
+            {
+                if (connections[i].Source == begin)
+                {
+                    connections.Remove(connections[i]);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+
         public void ReLayoutGraph()
         {
             /*graph = new GGraph(true);
@@ -144,9 +161,12 @@ namespace HideAndSeekGraph.ViewModel
 
         }
 
+        public void Animation()
+        {
+            existingVertices[0].VertexColor="Red";
+        }
 
-
-        #region Private Methods
+        /*#region Private Methods
         private GEdge AddNewGraphEdge(GVertex from, GVertex to, String Color)
         {
             string edgeString = string.Format("{0}-{1} Connected", from.ID, to.ID);
@@ -157,7 +177,7 @@ namespace HideAndSeekGraph.ViewModel
         }
 
 
-        #endregion
+        #endregion*/
 
         #region Public Properties
 

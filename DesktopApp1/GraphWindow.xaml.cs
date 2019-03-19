@@ -32,5 +32,10 @@ namespace HideAndSeekGraph
         {
             vm.ReLayoutGraph();
         }
+
+        private void Animation(object sender, RoutedEventArgs e)
+        {
+            vm.Animation();
+        }
     }
 }

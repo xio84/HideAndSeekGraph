@@ -25,7 +25,14 @@ namespace HideAndSeekGraph.NodeParts
             }
         }
 
-        public String EdgeColor { get; set; }
+        private String edgeColor;
+
+        public String EdgeColor { get { return edgeColor; }
+            set {
+                edgeColor = value;
+                NotifyPropertyChanged("EdgeColor");
+            }
+        }
 
         public GEdge(string id, GVertex source, GVertex target, String EC)
             : base(source, target)

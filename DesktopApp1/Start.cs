@@ -37,7 +37,7 @@ namespace HideAndSeekGraph
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = "D:\\";
                 openFileDialog.Filter = "txt files (*.txt)|*.txt";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
@@ -69,7 +69,7 @@ namespace HideAndSeekGraph
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = "D:\\";
                 openFileDialog.Filter = "txt files (*.txt)|*.txt";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;

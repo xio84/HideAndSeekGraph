@@ -34,10 +34,12 @@ namespace HideAndSeekGraph
                 while (Convert.ToInt32(Nodes[Curr].Next.Count) != 0)
                 {
                     Nodes[Curr].Next.RemoveAt(0);
+                    gg.DeleteEdge(Curr);
                 }
                 if (Prev != 0)
                 {
                     Nodes[Curr].Next.Add(Prev);
+                    gg.AddEdge(Curr, Prev);
                 }
             }
         }
@@ -113,7 +115,7 @@ namespace HideAndSeekGraph
                 Nodes[from].AddElmt(to);
                 Nodes[to].AddElmt(from);
                 gg.AddEdge(from, to);
-                //gg.AddEdge(new GVertex(to.ToString(), "Black"), new GVertex(from.ToString(), "Black"));
+                gg.AddEdge(to, from);
             }
             Console.WriteLine("Graph loaded successfuly\n");
             outputs+="Graph loaded successfuly\n"; 
