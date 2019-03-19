@@ -42,7 +42,7 @@ namespace HideAndSeekGraph
             this.helloWorldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.helloWorldLabel.Location = new System.Drawing.Point(297, 36);
             this.helloWorldLabel.Name = "helloWorldLabel";
-            this.helloWorldLabel.Size = new System.Drawing.Size(173, 31);
+            this.helloWorldLabel.Size = new System.Drawing.Size(139, 26);
             this.helloWorldLabel.TabIndex = 3;
             this.helloWorldLabel.Text = "Masukkan N!";
             this.helloWorldLabel.Click += new System.EventHandler(this.helloWorldLabel_Click);
@@ -63,16 +63,17 @@ namespace HideAndSeekGraph
             this.graphlabel.AutoSize = true;
             this.graphlabel.Location = new System.Drawing.Point(96, 114);
             this.graphlabel.Name = "graphlabel";
-            this.graphlabel.Size = new System.Drawing.Size(39, 18);
+            this.graphlabel.Size = new System.Drawing.Size(32, 16);
             this.graphlabel.TabIndex = 9;
             this.graphlabel.Text = "File: ";
+            this.graphlabel.Click += new System.EventHandler(this.graphlabel_Click);
             // 
             // querylabel
             // 
             this.querylabel.AutoSize = true;
             this.querylabel.Location = new System.Drawing.Point(331, 114);
             this.querylabel.Name = "querylabel";
-            this.querylabel.Size = new System.Drawing.Size(39, 18);
+            this.querylabel.Size = new System.Drawing.Size(32, 16);
             this.querylabel.TabIndex = 12;
             this.querylabel.Text = "File: ";
             // 
@@ -98,7 +99,7 @@ namespace HideAndSeekGraph
             // 
             // Start
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 405);
             this.Controls.Add(this.startbutton);

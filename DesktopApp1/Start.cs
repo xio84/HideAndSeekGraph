@@ -101,6 +101,11 @@ namespace HideAndSeekGraph
             w.Show();
         }
 
+        private void graphlabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void compute(object sender, EventArgs e)
         {
             int n;
