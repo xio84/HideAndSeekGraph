@@ -1,6 +1,9 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using JR.Utils.GUI.Forms;
+using System.Collections;
+using System.Windows.Forms.Integration;
 
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
@@ -97,7 +100,9 @@ namespace HideAndSeekGraph
         private void BeginProcedure(object sender, EventArgs e)
         {
             Procedure P = new Procedure();
-            MainWindow w = new MainWindow(P.Start(graph, query));
+            ArrayList A;
+            MainWindow w = new MainWindow(P.Start(graph, query, out A), A);
+            ElementHost.EnableModelessKeyboardInterop(w);
             w.Show();
         }
 

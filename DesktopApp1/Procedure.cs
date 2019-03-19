@@ -11,7 +11,7 @@ namespace HideAndSeekGraph
 {
     class Procedure
     {
-        public static MainViewModel gg = new MainViewModel();
+        public MainViewModel gg = new MainViewModel();
         static void MakeGraph(Node[] Nodes, int Curr, int Prev)
         {
             if (Nodes[Curr].Next.Count == 1 && Prev != 0)
@@ -108,7 +108,7 @@ namespace HideAndSeekGraph
             }
         }
 
-        /*bool DFS(Node[] Nodes, int start, int finish, bool Found, ArrayList Answer)
+        static void PrintList(Node[] Nodes, int N)
         {
             Console.WriteLine("\nIsi ArrayList : ");
             for (int i = 1; i <= N; i++)
@@ -124,7 +124,7 @@ namespace HideAndSeekGraph
             int N, Q;
             int from, to, dir, x, y;
             string[] inputs, lines;
-            string outputs="";
+            string outputs = "";
             bool Found;
 
 
@@ -153,13 +153,13 @@ namespace HideAndSeekGraph
             }
 
             Console.WriteLine("Graph loaded successfuly\n");
-            outputs+="Graph loaded successfuly\n"; 
+            outputs += "Graph loaded successfuly\n";
 
             MakeGraph(Nodes, 1, 0);
 
             PrintList(Nodes, N);
 
-            ArrayList Query = new ArrayList();
+            Query = new ArrayList();
 
             lines = System.IO.File.ReadAllLines(query);
             Q = Convert.ToInt32(lines[0]);
@@ -179,8 +179,8 @@ namespace HideAndSeekGraph
                 Found = false;
                 inputs = Convert.ToString(Query[i]).Split(' ');
                 dir = Convert.ToInt32(inputs[0]);
-                y = Convert.ToInt32(inputs[1]);
-                x = Convert.ToInt32(inputs[2]);
+                x = Convert.ToInt32(inputs[1]);
+                y = Convert.ToInt32(inputs[2]);
                 if (dir == 0)
                 {
                     if (DFS0(Nodes, 1, y, x, Found, Answer))
@@ -231,8 +231,8 @@ namespace HideAndSeekGraph
             MessageBox.Show(outputs);
             return gg;
         }
-    }*/
-        static bool DFS0(Node[] Nodes, int start, int finish, int goal, bool Found, ArrayList Answer)
+        /*
+        static void Start()
         {
             int N, Q;
             int from, to, dir, x, y;
@@ -283,7 +283,7 @@ namespace HideAndSeekGraph
                         {
                             Console.Write("->" + Answer[j]);
                         }
-                        */
+                        
                         Console.WriteLine();
                     }
                     else
@@ -314,6 +314,7 @@ namespace HideAndSeekGraph
 
             // PrintList(Nodes,N);
         }
+        */
     }
 }
 
