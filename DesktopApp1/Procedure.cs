@@ -149,7 +149,7 @@ namespace HideAndSeekGraph
                 Nodes[from].AddElmt(to);
                 Nodes[to].AddElmt(from);
                 gg.AddEdge(from, to);
-                //gg.AddEdge(to, from);
+                gg.AddEdge(to, from);
             }
 
             Console.WriteLine("Graph loaded successfuly\n");
@@ -302,7 +302,7 @@ namespace HideAndSeekGraph
                         {
                             Console.Write("->" + Answer[j]);
                         }
-                        
+                        */
                         Console.WriteLine();
                     }
                     else

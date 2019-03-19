@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
-using JR.Utils.GUI.Forms;
 
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
@@ -21,6 +20,11 @@ namespace HideAndSeekGraph
         {
             // Click on the link below to continue learning how to build a desktop app using WinForms!
             System.Diagnostics.Process.Start("http://aka.ms/dotnet-get-started-desktop");
+
+        }
+
+        private void helloWorldLabel_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -53,7 +57,7 @@ namespace HideAndSeekGraph
                 }
             }
 
-            FlexibleMessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+            MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
             graph = filePath;
             graphlabel.Text = "File = " + graph;
         }
@@ -85,7 +89,7 @@ namespace HideAndSeekGraph
                 }
             }
 
-            FlexibleMessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+            MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
             query = filePath;
             querylabel.Text = "File = " + query;
         }
@@ -95,6 +99,16 @@ namespace HideAndSeekGraph
             Procedure P = new Procedure();
             MainWindow w = new MainWindow(P.Start(graph, query));
             w.Show();
+        }
+
+        private void compute(object sender, EventArgs e)
+        {
+            int n;
+            if (Int32.TryParse(input, out n))
+            {
+                Form InputGraph = new InputGraph(n);
+                InputGraph.ShowDialog();
+            }
         }
 
         private void Start_Load(object sender, EventArgs e)
