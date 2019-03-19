@@ -28,7 +28,7 @@ namespace HideAndSeekGraph
             }
         }
 
-        /*bool DFS(Node[] Nodes, int start, int finish, bool Found, ArrayList Answer)
+        bool DFS(Node[] Nodes, int start, int finish, bool Found, ArrayList Answer)
         {
             if (Nodes[start].Next.Count == 0)
             {
@@ -99,7 +99,7 @@ namespace HideAndSeekGraph
                 Nodes[from].AddElmt(to);
                 Nodes[to].AddElmt(from);
                 gg.AddEdge(from, to);
-                gg.AddEdge(to, from);
+                //gg.AddEdge(to, from);
             }
             Console.WriteLine("Graph loaded successfuly\n");
             outputs+="Graph loaded successfuly\n"; 
@@ -170,7 +170,7 @@ namespace HideAndSeekGraph
             return gg;
             //PrintList(Nodes,N);
         }
-    }*/
+    }/*
         static bool DFS0(Node[] Nodes, int start, int finish, int goal, bool Found, ArrayList Answer)
         {
             if (start == finish) // basis 1 : Node sekarang adalah node finish
@@ -302,7 +302,7 @@ namespace HideAndSeekGraph
                         {
                             Console.Write("->" + Answer[j]);
                         }
-                        */
+                        *//*
                         Console.WriteLine();
                     }
                     else
@@ -321,7 +321,7 @@ namespace HideAndSeekGraph
                         {
                             Console.Write("->" + Answer[j]);
                         }
-                        */
+                        
                         Console.WriteLine();
                     }
                     else
@@ -333,5 +333,5 @@ namespace HideAndSeekGraph
 
             // PrintList(Nodes,N);
         }
-    }
+    }*/
 }

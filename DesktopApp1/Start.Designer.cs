@@ -45,12 +45,11 @@ namespace HideAndSeekGraph
             this.helloWorldLabel.Size = new System.Drawing.Size(173, 31);
             this.helloWorldLabel.TabIndex = 3;
             this.helloWorldLabel.Text = "Masukkan N!";
-            this.helloWorldLabel.Click += new System.EventHandler(this.helloWorldLabel_Click);
             // 
             // graphfbutton
             // 
             this.graphfbutton.Font = new System.Drawing.Font("Trebuchet MS", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.graphfbutton.Location = new System.Drawing.Point(99, 286);
+            this.graphfbutton.Location = new System.Drawing.Point(54, 286);
             this.graphfbutton.Name = "graphfbutton";
             this.graphfbutton.Size = new System.Drawing.Size(145, 38);
             this.graphfbutton.TabIndex = 8;
@@ -61,7 +60,7 @@ namespace HideAndSeekGraph
             // graphlabel
             // 
             this.graphlabel.AutoSize = true;
-            this.graphlabel.Location = new System.Drawing.Point(96, 114);
+            this.graphlabel.Location = new System.Drawing.Point(51, 89);
             this.graphlabel.Name = "graphlabel";
             this.graphlabel.Size = new System.Drawing.Size(39, 18);
             this.graphlabel.TabIndex = 9;
@@ -70,7 +69,7 @@ namespace HideAndSeekGraph
             // querylabel
             // 
             this.querylabel.AutoSize = true;
-            this.querylabel.Location = new System.Drawing.Point(331, 114);
+            this.querylabel.Location = new System.Drawing.Point(331, 89);
             this.querylabel.Name = "querylabel";
             this.querylabel.Size = new System.Drawing.Size(39, 18);
             this.querylabel.TabIndex = 12;
@@ -88,7 +87,7 @@ namespace HideAndSeekGraph
             // 
             // startbutton
             // 
-            this.startbutton.Location = new System.Drawing.Point(576, 295);
+            this.startbutton.Location = new System.Drawing.Point(587, 285);
             this.startbutton.Name = "startbutton";
             this.startbutton.Size = new System.Drawing.Size(144, 38);
             this.startbutton.TabIndex = 13;
